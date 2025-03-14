@@ -1,0 +1,26 @@
+{
+	"name": "wordpress",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "wordpress",
+	"workspaceFolder": "/var/www/html", // modify to desired workspace folder on docker container
+	"shutdownAction": "stopCompose",
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"bmewburn.vscode-intelephense-client",
+				"johnbillion.vscode-wordpress-hooks",
+				"wordpresstoolbox.wordpress-toolbox",
+				"formulahendry.auto-rename-tag",
+				"Zignd.html-css-class-completion"
+			],
+			"settings": {
+				"terminal.integrated.shell.linux": "zsh"
+			}
+		}
+	}
+
+	// uncomment to use a non-root user
+	// "remoteUser": "vscode"
+}

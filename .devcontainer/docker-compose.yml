@@ -1,0 +1,39 @@
+version: '3.6'
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - development
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+
+  wordpress:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - development
+    ports:
+      - 8080:80
+    volumes:
+      - ..:/workspace:cached
+      - ../wordpress:/var/www/html
+      - ./resources:/var/www/html/resources
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ${DATABASE_USER}
+      WORDPRESS_DB_PASSWORD: ${DATABASE_PASSWORD}
+      WORDPRESS_DB_NAME: ${DATABASE_NAME}
+
+networks:
+  development:
