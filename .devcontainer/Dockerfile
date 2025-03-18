@@ -53,7 +53,6 @@
 
     # Install Oh My Zsh for personal preference
     RUN sh -c "$(curl -L https://github.com/deluan/zsh-in-docker/releases/download/v1.2.1/zsh-in-docker.sh)" -- \
-    -t robbyrussell \
     && chsh -s $(which zsh) vscode
 
     # Add WP-CLI 
